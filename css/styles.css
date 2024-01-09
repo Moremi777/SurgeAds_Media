@@ -207,7 +207,7 @@ input{
     font-weight: 600;
 }
 
-* {
+/* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -320,5 +320,5 @@ body {
 .register-link p a:hover{
     text-decoration: underline;
 }
-
+*/
 
