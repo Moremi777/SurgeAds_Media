@@ -59,10 +59,62 @@ a:hover{
 
 h6{
     margin: 15px;
+    color: black;
 }
 
 .media {
     display: inline-block;
-    margin-right: 10px; /* optional: add some spacing between the images */
+    margin-right: 10px; 
 }
 
+.card {
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.card-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; 
+    font-weight: bold;
+}
+
+.container{
+    padding: 50px;
+}
+
+.card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); 
+}
+
+.transparent-container {
+    position: absolute;
+    top: 50%;
+    right: 45%;
+    background-color: rgba(255, 255, 255, 0.7); 
+    padding: 20px;
+    width: 50%;
+}
+
+.content {
+    color: #333; 
+}
+
+.content button{
+    color: black;
+    width: 30%;
+}
+
+button{
+    background-color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+}
