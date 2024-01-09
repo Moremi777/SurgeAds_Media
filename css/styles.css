@@ -6,6 +6,11 @@ h3{
     margin-left: 12px;
 }
 
+hr{
+    margin: auto;
+    width: 85%;
+}
+
 .footer-links{
     text-align: center;
 }
@@ -60,3 +65,4 @@ h6{
     display: inline-block;
     margin-right: 10px; /* optional: add some spacing between the images */
 }
+
