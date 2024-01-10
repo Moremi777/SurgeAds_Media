@@ -72,7 +72,7 @@ h6{
     transition: transform 0.3s;
 }
 
-.card-text {
+.card-text-1 {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -81,7 +81,7 @@ h6{
     font-weight: bold;
 }
 
-.container{
+.container-1{
     padding: 50px;
 }
 
@@ -247,6 +247,15 @@ body{
 .icon-cart{
     position: relative;
 }
+
+.card-body{
+    margin-top: -57px;
+}
+
+.card.shadow{
+    height: 470px;
+}
+
 .icon-cart span{
     position: absolute;
     background-color: red;
@@ -260,10 +269,29 @@ body{
     top: 50%;
     right: -10px;
 }
+
+.card.shadow img{
+    max-height: 75%;
+    max-width: 91%;
+    height: auto;
+    background: lightblue;
+    background: radial-gradient(white 30%, lightblue 70%);
+}
+
+.fa-star,
+.fa-star-half{
+   color: yellowgreen;
+   padding: 3% 0; 
+}
+
 .title{
     font-size: x-large;
 }
-.listProduct .item img{
+.container_shop h2{
+    margin-left: -85px;
+}
+
+.listProduct .item img  {
     width: 90%;
     filter: drop-shadow(0 50px 20px #0009);
 }
