@@ -233,6 +233,10 @@ input{
     width: 90%;
 }
 
+.shopping-cart{
+    padding: 3% 0;
+}
+
 body{
     margin: 0;
     /*font-family: Poppins;*/
