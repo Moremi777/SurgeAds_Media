@@ -1,7 +1,7 @@
 <?php 
 
 function component(){
-    $element = "
+    $elements= "
 
     <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
         <form action=\"cart.html\" method=\"post\">
@@ -31,7 +31,9 @@ function component(){
             </div>
         </form>
     </div>";
+
+echo $elements;
+
 }
 
-echo $element;
-
+?>
