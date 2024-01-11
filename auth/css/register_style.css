@@ -10,7 +10,8 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: brown;
+    background-image: url('C:\Users\Kopano\Desktop\New folder\Work\The Pet Shop\SurgeAds_Media\images\alex-gruber-it3aC1K6sWQ-unsplash.jpg');
+    
     background-size: cover;
     background-position: center;
 
@@ -82,6 +83,7 @@ body {
 .remember-forgot label input{
     accent-color: #fff;
     margin-right: 3px;
+    text-align: center;
 }
 
 .remember-forgot a:hover{
