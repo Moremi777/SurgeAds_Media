@@ -85,6 +85,12 @@ require_once("../php/component.php");
         </div>
     </div>
 
+    <!-- SUPPLIER PLUGIN -->
+    <div class="powr-ecommerce" id="957ac43d_1704981222"></div><script src="https://www.powr.io/powr.js?platform=html"></script>
+
+    <!-- PRODUCT REVIEW PLUGIN -->
+    <div class="powr-product-reviews" id="eff64d4d_1704981942"></div><script src="https://www.powr.io/powr.js?platform=html"></script>
+    
     <hr>
     <footer>
         <br>
