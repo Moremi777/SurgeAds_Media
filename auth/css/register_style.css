@@ -10,8 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url('C:\Users\Kopano\Desktop\New folder\Work\The Pet Shop\SurgeAds_Media\images\alex-gruber-it3aC1K6sWQ-unsplash.jpg');
-    
+    background-image: url('../../images/alex-gruber-it3aC1K6sWQ-unsplash.jpg');
     background-size: cover;
     background-position: center;
 

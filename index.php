@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+
+?>
+
+<?php require "config/config.php"; ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,8 +19,8 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <img src="#" alt="LOGO" class="navbar-brand">
-            <a class="navbar-brand" href="#">SurgeAds Media</a>
+            <img src="https://localhost/SurgeAds_Media/index.php" alt="LOGO" class="navbar-brand">
+            <a class="navbar-brand" href="https://localhost/SurgeAds_Media/index.php">SurgeAds Media</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -21,17 +29,17 @@
             <div class="collapse navbar-collapse px-5" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-lg-0 p-2 ml-5">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="store/shop.php"> Shop </a>
+                        <a class="nav-link active" aria-current="page" href="https://localhost/SurgeAds_Media/store/shop.php"> Shop </a>
                     </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link active dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#"> Foods </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="store/shop.php"> Dog </a></li>
+                                <li><a class="dropdown-item" href="https://localhost/SurgeAds_Media/store/shop.php"> Dog </a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="store/shop.php"> Cat </a></li>
+                                <li><a class="dropdown-item" href="https://localhost/SurgeAds_Media/store/shop.php"> Cat </a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="store/shop.php"> Parrot </a></li>
+                                <li><a class="dropdown-item" href="https://localhost/SurgeAds_Media/store/shop.php"> Parrot </a></li>
                             </ul>
                     </li>
                     <li class="nav-item">
@@ -45,16 +53,15 @@
                     <input class="form-control me-1" type="search" placeholder="What are you looking for..." aria-label="Search">
                     <img src="images/icons8-search-32.png" class="nav-icons" type="submit" alt="search">
                 </form>
-
                 <li class="nav-item dropdown">
                     <img src="images/icons8-user-32.png" alt="user" class="nav-icons" data-bs-toggle="dropdown" aria-expanded="false">
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="auth/login.html"> Sign In </a></li>
+                            <li><a class="dropdown-item" href="https://localhost/SurgeAds_Media/auth/login.php"> Sign In </a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="auth/register.html"> Sign Up </a></li>
+                            <li><a class="dropdown-item" href="https://localhost/SurgeAds_Media/auth/register.php"> Sign Up </a></li>
                         </ul>
                 </li>
-                <a href="store/cart.html"><img src="images/icons8-cart-32.png" alt="cart" class="nav-icons"></a>
+                <a href="https://localhost/SurgeAds_Media/store/cart.php"><img src="images/icons8-cart-32.png" alt="cart" class="nav-icons"></a>
             </div>
         </div>
     </nav>
@@ -65,7 +72,7 @@
             <h6> EXTRA LOVE </h6>
             <h2> Spoil Your Furry <br> Friend with the Best <br> Pet Supplies </h2>
 
-            <form action="store/shop.php" method="GET">
+            <form action="https://localhost/SurgeAds_Media/store/shop.php" method="GET">
                 <button type="submit"> Shop Now </button>
             </form>
         </div>
@@ -135,29 +142,5 @@
     </div>
 
     <img src="images/matt-nelson-aI3EBLvcyu4-unsplash.jpg" class="img-fluid" alt="displayImage">
-    <hr>
-    <footer>
-        <br>
-        <div class="footer-links">
-            <a href=""> © 2024, SurgeAds Media </a>
-            <a href=""> Refund Policy </a>
-            <a href=""> Privacy Policy </a>
-            <a href=""> Terms of Service </a>
-        </div>
 
-        <div class="social-media" style="text-align: center; padding: 20px; margin-left: 10px;">
-            <h6> Follow us on social media </h6>
-            <a href="#"><img src="images/icons8-facebook-32.png" class="media" alt="Facebook"></a>
-            <a href="#"><img src="images/icons8-instagram-32.png" class="media" alt="Instagram"></a>
-            <a href="#"><img src="images/icons8-twitter-32.png" class="media" alt="X"></a>
-            <a href="#"><img src="images/icons8-tiktok-32.png" class="media" alt="TikTok"></a>
-        </div>
-        <br>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</body>
-</html>
+<?php require "includes/footer.php"; ?>

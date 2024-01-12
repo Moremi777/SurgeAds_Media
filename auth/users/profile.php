@@ -1,3 +1,20 @@
+<?php require "../../config/config.php"; ?>
+
+<?php
+
+    $select = $conn->query("SELECT * FROM users");
+
+    $select->execute();
+
+    $profile = $select->fetch(PDO::FETCH_OBJ);
+
+    if($_SESSION['user_id'] !== $profile->id)
+    {
+        header('location: http://localhost/SurgeAds_Media/index.php');
+    }
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,7 +23,7 @@
     <title>Profile</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../../css/styles.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -21,10 +38,10 @@
             <div class="collapse navbar-collapse px-5" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-lg-0 p-2 ml-5">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../index.html"> Home </a>
+                        <a class="nav-link active" aria-current="page" href="https://localhost/SurgeAds_Media/index.php"> Home </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../store/shop.php"> Shop </a>
+                        <a class="nav-link active" aria-current="page" href="https://localhost/SurgeAds_Media/store/shop.php"> Shop </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link active dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#"> Foods </a>
@@ -44,47 +61,47 @@
                     </li>
                 </ul>
 
-                <form class="d-flex" role="search">
+                <form class="d-flex" role="search" method="POST" action="profile.php?prof_id=<?php echo $profile->id; ?>">
                     <input class="form-control me-1" type="search" placeholder="What are you looking for..." aria-label="Search">
-                    <img src="../images/icons8-search-32.png" class="nav-icons" type="submit" alt="search">
-                    <img src="../images/icons8-user-32.png" alt="user" class="nav-icons" onclick="toggleMenu()">
+                    <img src="../../images/icons8-search-32.png" class="nav-icons" type="submit" alt="search">
+                    <img src="../../images/icons8-user-32.png" alt="user" class="nav-icons" onclick="toggleMenu()">
 
                     <div class="sub-menu-wrap" id="subMenu">
                         <div class="sub-menu">
                             <div class="user-info">
-                                <img src="../images/user.png" alt="user" class="nav-icons">
-                                <h5> John Doe </h5>
+                                <img src="../../images/user.png" alt="user" class="nav-icons">
+                                <h5> <?php echo $profile->fname; ?> <?php echo $profile->lname; ?> </h5>
                             </div>
                             <hr>
                             <a href="#" class="sub-menu-link">
-                                <img src="../images/icons8-user-32.png" alt="edit" class="nav-icons">
+                                <img src="../../images/icons8-user-32.png" alt="edit" class="nav-icons">
                                 <p> Edit Profile </p>
                                 <span></span>
                             </a>
                             <a href="#" class="sub-menu-link">
-                                <img src="../images/icons8-logistics-32.png" alt="edit" class="nav-icons">
+                                <img src="../../images/icons8-logistics-32.png" alt="edit" class="nav-icons">
                                 <p> My Orders </p>
                                 <span></span>
                             </a>
                             <a href="#" class="sub-menu-link">
-                                <img src="../images/setting.png" alt="settings" class="nav-icons">
+                                <img src="../../images/setting.png" alt="settings" class="nav-icons">
                                 <p> Settings & Privacy </p>
                                 <span></span>
                             </a>
                             <a href="#" class="sub-menu-link">
-                                <img src="../images/help.png" alt="help" class="nav-icons">
+                                <img src="../../images/help.png" alt="help" class="nav-icons">
                                 <p> Help & Support </p>
                                 <span></span>
                             </a>
-                            <a href="#" class="sub-menu-link">
-                                <img src="../images/logout.png" alt="logout" class="nav-icons">
+                            <a href="https://localhost/SurgeAds_Media/auth/logout.php" class="sub-menu-link">
+                                <img src="../../images/logout.png" alt="logout" class="nav-icons">
                                 <p> Logout </p>
                                 <span></span>
                             </a>
                         </div>
                     </div>
 
-                    <a href="../store/cart.html"><img src="../images/icons8-cart-32.png" alt="cart" class="nav-icons"></a>
+                    <a href="https://localhost/SurgeAds_Media/store/cart.php"><img src="../../images/icons8-cart-32.png" alt="cart" class="nav-icons"></a>
                 </form>
             </div>
         </div>
@@ -107,10 +124,10 @@
 
         <div class="social-media" style="text-align: center; padding: 20px; margin-left: 10px;">
             <h6> Follow us on social media </h6>
-            <a href="#"><img src="../images/icons8-facebook-32.png" class="media" alt="Facebook"></a>
-            <a href="#"><img src="../images/icons8-instagram-32.png" class="media" alt="Instagram"></a>
-            <a href="#"><img src="../images/icons8-twitter-32.png" class="media" alt="X"></a>
-            <a href="#"><img src="../images/icons8-tiktok-32.png" class="media" alt="TikTok"></a>
+            <a href="#"><img src="../../images/icons8-facebook-32.png" class="media" alt="Facebook"></a>
+            <a href="#"><img src="../../images/icons8-instagram-32.png" class="media" alt="Instagram"></a>
+            <a href="#"><img src="../../images/icons8-twitter-32.png" class="media" alt="X"></a>
+            <a href="#"><img src="../../images/icons8-tiktok-32.png" class="media" alt="TikTok"></a>
         </div>
         <br>
     </footer>
