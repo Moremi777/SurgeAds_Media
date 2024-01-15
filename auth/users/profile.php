@@ -8,11 +8,6 @@
 
     $profile = $select->fetch(PDO::FETCH_OBJ);
 
-    if($_SESSION['user_id'] !== $profile->id)
-    {
-        header('location: http://localhost/SurgeAds_Media/index.php');
-    }
-
 ?>
 
 <!doctype html>
