@@ -7,7 +7,7 @@ session_start();
 
 <?php
 
-  if(isset($_SESSION['email']))
+  if(isset($_SESSION['user_id']))
   {
       header("location: http://localhost/SurgeAds_Media/index.php");
   }
@@ -26,13 +26,13 @@ session_start();
         $password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
         $insert = $conn->prepare("INSERT INTO users (fname, lname, email, user_password) VALUES 
-        (:fname, :lname, :email, :pass)");
+        (:fname, :lname, :email, :user_password)");
 
         $insert->execute([
             ':fname' => $name,
             ':lname' => $surname,
             ':email' => $email,
-            ':pass' => $password
+            ':user_password' => $password
         ]);
 
         header("location: login.php");

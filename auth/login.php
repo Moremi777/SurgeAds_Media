@@ -19,7 +19,7 @@ session_start();
 
     //do our password verify function and redirect to the index page
 
-    if(isset($_SESSION['email']))
+    if(isset($_SESSION['user_id']))
     {
         header("location: http://localhost/SurgeAds_Media/auth/users/profile.php");
     }
