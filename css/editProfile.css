@@ -1,23 +1,59 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-}
+/*.container {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    flex-direction: column;
+}*/
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    /*background: brown;*/
-    background-image: url('../../images/charlesdeluvio-Mv9hjnEUHR4-unsplash.jpg');
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*min-height: 100vh;*/
+    background-image: url('../../images/alex-gruber-it3aC1K6sWQ-unsplash.jpg');
     background-size: cover;
-    background-position: center;
+    
+    /*background-position: center;*/
 
 }
 
-.wrapper { 
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 4px solid #ccc;
+    padding-bottom: 20px;
+
+}
+
+.profile_picture {
+    margin-right: 10px; /* Add some margin between the profile picture and the label */
+}
+
+.profile_picture img {
+    width: 180px;
+    height: 180px;
+    border: 2px solid rgba(255, 255, 255, 0);
+    border-radius: 50%;
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    width: 200px;
+    background: #e3362c;
+    color: #fff;
+    padding: 12px;
+    /*margin: 10px auto;*/
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input {
+    display: none;
+}
+
+/*.wrapper { 
     width: 420px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
@@ -26,12 +62,7 @@ body {
     color: white;
     border-radius: 10px;
     padding: 30px 40px;
-}
-
-.wrapper h1 {
-    font-size: 36px;
-    text-align: center;
-}
+}*/
 
 .wrapper .input-box{
     position: relative;
@@ -54,7 +85,7 @@ body {
 }
 
 .input-box input::placeholder{
-    color: #fff;
+    color: #333 ;
 }
 
 .input-box i{
@@ -63,6 +94,7 @@ body {
     top: 50%;
     transform: translateY(-50%);
     font-size: 20px;
+    cursor: pointer;
 }
 
 .input-box{
@@ -71,53 +103,25 @@ body {
     top: 50%;
     transition: translateY(-50%);
     font-size: 20px;
-}
-
-.wrapper .remember-forget{
-    display: flex;
-    justify-self: space-between;
-    font-size: 14.5px;
-    margin: -15px 0 15px;
-}
-
-.remember-forgot label input{
-    accent-color: #fff;
-    margin-right: 3px;
-    text-align: center;
-}
-
-.remember-forgot a:hover{
-   text-decoration: underline; 
+    border: 1px #333;
 }
 
 .wrapper .btn{
     width: 100%;
     height: 45px;
-    background: #fff;
+    background: #e3362c;
     border: none;
     outline: none;
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     cursor: pointer;
     font-size: 16px;
-    color: #333;
-    font-weight: 600;
-}
-
-.wrapper .register-link{
-    font-size: 14.5px;
-    text-align: center;
-    margin: 20px 0 15px;
-}
-
-.remember-link p a {
     color: #fff;
-    text-decoration: none;
     font-weight: 600;
 }
 
-.register-link p a:hover{
-    text-decoration: underline;
+remember-forgot label input{
+    accent-color: #fff;
+    margin-right: 3px;
+    text-align: center;
 }
-
-

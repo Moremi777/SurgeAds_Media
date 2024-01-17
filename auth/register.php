@@ -59,24 +59,37 @@ session_start();
             <h1>Register Account</h1>
             <div class="input-box">
                 <input type="text" name="f_name" placeholder="Name " required>
-                
             </div>
             <div class="input-box">
                 <input type="text" name="l_name" placeholder="Surname " required>
-                
             </div>
             <div class="input-box">
-                <input type="text" name="user_email" placeholder="Email " required>
-                
+                <input type="email" name="user_email" placeholder="Email " required>  
+            </div>
+            <div class="input-box">
+                <input type="tel" name="phone_number" placeholder="Phone number " required>
             </div>
             <div class="input-box">
                 <input type="password" name="pass" placeholder="Create password" required>
-
             </div>
+            
+            <!--Create confirm password HERE-->
+
             <div class="remember-forgot">
-                <label><input type="checkbox"> Show password</label>
+                <label><input type="checkbox" id="showPassword"> Show password</label>
                 <!--<a href="#">Forgot password</a>-->
             </div>
+
+            <!--Javascript code to show password when the checkbox is checked or not -->
+            <script>
+                const passwordInput = document.getElementById('password');
+                const showPasswordCheckbox = document.getElementById('showPassword');
+
+                showPasswordCheckbox.addEventListener('change', function () {
+                const isChecked = this.checked;
+                passwordInput.type = isChecked ? 'text' : 'password';
+                });
+            </script>
             
             <button type="submit" name="submit" class="btn">Register</button>
             
