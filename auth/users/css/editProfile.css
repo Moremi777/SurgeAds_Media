@@ -10,7 +10,7 @@ body {
     /*justify-content: center;*/
     /*align-items: center;*/
     /*min-height: 100vh;*/
-   background-color: blue;
+   background-color: green;
     background-size: cover;
     
     /*background-position: center;*/
@@ -21,9 +21,8 @@ body {
     display: flex;
     align-items: left;
     justify-content: left;
-    
-    /*border-bottom: 4px solid #ccc;
-    padding-bottom: 20px;*/
+    border-bottom: 4px solid #ccc;
+    padding-bottom: 20px;
 }
 
 .profile_picture {
@@ -53,7 +52,7 @@ label {
     display: none;
 }
 
-/*.wrapper { 
+.wrapper { 
     width: 1215px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
@@ -63,37 +62,10 @@ label {
     border-radius: 10px;
     padding: 30px 40px;
     margin-left: 5%;
-    /*_________________________________________________*/
-    /*display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-}*/
-
-.wrapper2 { 
-    width: 1215px;
-    background: transparent;
-    /*border: 2px solid rgba(255, 255, 255, .2);*/
-    /*backdrop-filter: blur(20px);*/
-    /*box-shadow: 0 0 10px rgba(0, 0, 0, .2);*/
-    color: white;
-    border-radius: 10px;
-    padding: 30px 40px;
-    margin-left: 5%;
-    /*_________________________________________________*/
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-
-    display: grid;
-    grid-template-columns: 300px 1fr; /* Define two columns: one for .wrapperProfile-pic and one for .wrapperInfo */
-    gap: 20px; /* Adjust the gap between the columns */
 }
 
 .wrapperProfile-pic { 
-    height: 550px; /* Adjust the height as needed */
-    width: 300px;
+    width: 1000px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);
@@ -101,47 +73,10 @@ label {
     color: white;
     border-radius: 10px;
     padding: 30px 40px;
-    /*margin-right: 5%;*/
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    margin: 5%;
 }
 
-.wrapperInfo { 
-    width: 800px;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, .2);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    color: white;
-    border-radius: 10px;
-    padding: 30px 40px;
-    /*margin-left: 30%;*/
-    
-}
-
-.wrapper .btn{
-    width: 100%;
-    height: 45px;
-    background: #e3362c;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-    cursor: pointer;
-    font-size: 16px;
-    color: #fff;
-    font-weight: 600;
-    
-}
-
-.wrapper h1 {
-    font-size: 36px;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.wrapperInfo .input-box{
+.wrapper .input-box{
     position: relative;
     width: 100%;
     height: 50px;
@@ -183,11 +118,18 @@ label {
     border: 1px #333;
 }
 
-
-
-.wrapper button{
-    font-size: 36px;
-    text-align: center; 
+.wrapper .btn{
+    width: 100%;
+    height: 45px;
+    background: #e3362c;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
 }
 
 .remember-forgot label input{
