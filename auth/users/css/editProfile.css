@@ -1,32 +1,73 @@
-/*.container {
-    display: flex;
-    align-items: left;
-    justify-content: left;
-    flex-direction: column;
-}*/
-
-body {
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
-    /*min-height: 100vh;*/
-   background-color: green;
-    background-size: cover;
-    
-    /*background-position: center;*/
-
-}
-
 .container {
     display: flex;
     align-items: left;
     justify-content: left;
-    border-bottom: 4px solid #ccc;
+    border: 4px solid #ccc;
     padding-bottom: 20px;
+    border-color: black;
 }
 
+h1{
+    text-align: center;
+    padding: 20px;
+}
+
+h5{
+    padding: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.profile_picture img {
+    width: 180px;
+    height: 180px;
+    border: 2px solid rgba(255, 255, 255, 0);
+    border-radius: 50%;
+    margin-bottom: 30px;
+    margin-left: 5px;
+}
+
+.btn{
+    cursor: pointer;
+    font-size: 16px;
+    color: black;
+    font-weight: 600;
+    background: #e3362c;
+    border: 5px;
+}
+
+.test{
+    margin-left: 5px;
+}
+
+.wrapperInfo{
+    margin: auto;
+}
+
+.input-box input{
+    border: none;
+    outline: none;
+    border: 2px solid black;
+    border-radius: 40px;
+    font-size: 16px;
+    color: black;
+    padding: 20px 45px 20px 20px;
+    padding: 10px;
+    margin: 15px;
+}
+
+label{
+    margin: 10px;
+}
+
+.input-box input::placeholder{
+    color: #333 ;
+}
+
+
+/*
 .profile_picture {
-    margin-right: 10px; /* Add some margin between the profile picture and the label */
+    margin-right: 10px; /* Add some margin between the profile picture and the label 
 }
 
 .profile_picture img {
@@ -37,13 +78,14 @@ body {
     margin-bottom: 30px;
 }
 
+
 label {
     display: block;
     width: 200px;
     background: #e3362c;
     color: #fff;
     padding: 12px;
-    /*margin: 10px auto;*/
+    /*margin: 10px auto;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -53,15 +95,11 @@ label {
 }
 
 .wrapper { 
-    width: 1215px;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, .2);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    color: white;
+    margin: auto;
+    width: 100px;
+    color: black;
     border-radius: 10px;
     padding: 30px 40px;
-    margin-left: 5%;
 }
 
 .wrapperProfile-pic { 
@@ -119,7 +157,7 @@ label {
 }
 
 .wrapper .btn{
-    width: 100%;
+    width: 70%;
     height: 45px;
     background: #e3362c;
     border: none;

@@ -99,5 +99,3 @@ session_start();
             </div>
         </form>
     </div>
-
-<?php require "../includes/footer.php"; ?>
