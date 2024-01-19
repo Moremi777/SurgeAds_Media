@@ -6,8 +6,8 @@
     <title>Edit Profile</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="users/css/editProfile.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="css/editProfile.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -22,10 +22,10 @@
             <div class="collapse navbar-collapse px-5" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-lg-0 p-2 ml-5">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../index.html"> Home </a>
+                        <a class="nav-link active" aria-current="page" href="../../index.html"> Home </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../store/shop.html"> Shop </a>
+                        <a class="nav-link active" aria-current="page" href="../../store/shop.html"> Shop </a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link active dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#"> Foods </a>
@@ -47,40 +47,40 @@
 
                 <form class="d-flex" role="search">
                     <input class="form-control me-1" type="search" placeholder="What are you looking for..." aria-label="Search">
-                    <img src="../images/icons8-search-32.png" class="nav-icons" type="submit" alt="search">
-                    <img src="../images/icons8-user-32.png" alt="user" class="nav-icons" onclick="toggleMenu()">
+                    <img src="../../images/icons8-search-32.png" class="nav-icons" type="submit" alt="search">
+                    <img src="../../images/icons8-user-32.png" alt="user" class="nav-icons" onclick="toggleMenu()">
 
                     <div class="sub-menu-wrap" id="subMenu">
                         <div class="sub-menu">
                             <div class="user-info">
-                                <img src="../images/user.png" alt="user" class="nav-icons">
+                                <img src="../../images/user.png" alt="user" class="nav-icons">
                                 <h3> John Doe </h3>
                             </div>
                             <hr>
                             <a href="#" class="sub-menu-link">
-                                <img src="../images/icons8-user-32.png" alt="edit" class="nav-icons">
+                                <img src="../../images/icons8-user-32.png" alt="edit" class="nav-icons">
                                 <p> Edit Profile </p>
                                 <span></span>
                             </a>
                             <a href="#" class="sub-menu-link">
-                                <img src="../images/setting.png" alt="settings" class="nav-icons">
+                                <img src="../../images/setting.png" alt="settings" class="nav-icons">
                                 <p> Settings & Privacy </p>
                                 <span></span>
                             </a>
                             <a href="#" class="sub-menu-link">
-                                <img src="../images/help.png" alt="help" class="nav-icons">
+                                <img src="../../images/help.png" alt="help" class="nav-icons">
                                 <p> Help & Support </p>
                                 <span></span>
                             </a>
                             <a href="#" class="sub-menu-link">
-                                <img src="../images/logout.png" alt="logout" class="nav-icons">
+                                <img src="../../images/logout.png" alt="logout" class="nav-icons">
                                 <p> Logout </p>
                                 <span></span>
                             </a>
                         </div>
                     </div>
 
-                    <a href="../store/cart.html"><img src="../images/icons8-cart-32.png" alt="cart" class="nav-icons"></a>
+                    <a href="../../store/cart.html"><img src="../../images/icons8-cart-32.png" alt="cart" class="nav-icons"></a>
                 </form>
             </div>
         </div>
@@ -92,7 +92,7 @@
     <div class="container">
         <div class="profile_picture">
             <h5> Update Image </h5>
-            <img src="images/default_ProfilePicture.png" id="profile-pic">
+            <img src="../images/default_ProfilePicture.png" id="profile-pic">
             <div class="wrapperProfile-pic">
                 <form action="">
                     <div class="test">
@@ -156,4 +156,4 @@
         </script>
 
 
-<?php require "../includes/footer.php"?>
+<?php require "../../includes/footer.php"?>

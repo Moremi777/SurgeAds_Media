@@ -68,7 +68,7 @@
                                 <h5> <?php echo $profile->fname; ?> <?php echo $profile->lname; ?> </h5>
                             </div>
                             <hr>
-                            <a href="#" class="sub-menu-link">
+                            <a href="https://localhost/SurgeAds_Media/auth/users/edit_profile.php" class="sub-menu-link">
                                 <img src="../../images/icons8-user-32.png" alt="edit" class="nav-icons">
                                 <p> Edit Profile </p>
                                 <span></span>

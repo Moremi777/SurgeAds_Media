@@ -14,6 +14,25 @@ session_start();
 
   if(isset($_POST['submit']))
   {
+    // Assuming you have a PDO instance $pdo
+    $email = $_POST['user_email']; // The username submitted by the user
+    $password = $_POST['pass']; // The email submitted by the user
+
+    // Prepare a SELECT statement to check if the user exists-
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = :user_email OR user_password = :pass");
+    $stmt->execute([':email' => $email, ':user_password' => $password]);
+
+    // Fetch the user from the database
+    $user = $stmt->fetch();
+
+    if ($user) {
+        // The user exists, display a message and suggest a password reset
+        echo "An account with this username or email already exists. If you forgot your password, please reset it.";
+    } else {
+        // The user doesn't exist, continue with the registration process
+        // ...
+    }
+    
     if($_POST['user_email'] == '' OR $_POST['pass'] == ''){
         echo "<div class='alert alert-danger text-center text-white' role='alert'>
           Enter data into inputs
