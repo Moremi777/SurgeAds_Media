@@ -95,13 +95,9 @@ session_start();
 
     <div class="category">
         <h1>
-            Categories
+            FEATURED PRODUCTS
         </h1>
         <hr>
-    </div>
-
-    <div>
-
     </div>
     
     <div class="container-1">
@@ -141,6 +137,79 @@ session_start();
         </div>
     </div>
 
-    <img src="images/matt-nelson-aI3EBLvcyu4-unsplash.jpg" class="img-fluid" alt="displayImage">
+    <div class="category">
+        <h1>
+            WHY CHOOSE US ?
+        </h1>
+        <hr>
+    </div>
+
+    <div id="carouselExampleDark" class="carousel carousel-dark slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+            <img src="images\wynand-van-poortvliet-kWUZKKBR2Ag-unsplash.jpg" class="d-block w-100 img-fluid" alt="delivery">
+
+            <div class="carousel-caption d-none d-md-block">
+                <h3>Priority Shipping</h3>
+                <p>Some representative placeholder content for the first slide.</p>
+            </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+            <img src="images\charanjeet-dhiman-mHusyBu4bxM-unsplash.jpg" class="d-block w-100 img-fluid" alt="customer-support">
+            <div class="carousel-caption d-none d-md-block">
+                <h3>Customer Support</h3>
+                <p>Some representative placeholder content for the second slide.</p>
+            </div>
+            </div>
+            <div class="carousel-item">
+            <img src="images\david-dvoracek-QiPe0UpC0_U-unsplash.jpg" class="d-block w-100 img-fluid" alt="secure_shopping">
+            <div class="carousel-caption d-none d-md-block">
+                <h3>100% Secure Shopping</h3>
+                <p>Some representative placeholder content for the third slide.</p>
+            </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="background-image">
+        <img src="images/matt-nelson-aI3EBLvcyu4-unsplash.jpg" class="img-fluid" alt="displayImage">
+        
+        <div class="contact-container">
+            <h1> CONTACT US </h1>
+            
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name:">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Email address:</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email Address">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Phone number (Optional): </label>
+                <input type="tel" class="form-control" id="exampleFormControlInput1" placeholder="Phone number:">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Enter your message:</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Message:"></textarea>
+            </div>
+            <div class="contact-button">
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </div>
+        </div>  
+    </div>
 
 <?php require "includes/footer.php"; ?>

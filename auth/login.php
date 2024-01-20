@@ -1,68 +1,43 @@
-<?php
-
-session_start();
-
-?>
-<?php require "../config/config.php"; ?>
-
 <?php 
+session_start(); // Start the session
 
-    //check for the submit 
+require "../config/config.php"; 
 
+//check for the submit 
+if(isset($_POST['submit'])){
     //take the data
+    $email = $_POST['user_email'];
+    $password = $_POST['pass']; 
 
-    //write our query
-
-    //execute and then fetch
-
-    //do our rowCount
-
-    //do our password verify function and redirect to the index page
-
-    if(isset($_SESSION['user_id']))
+    if($email == '' OR $password == '')
     {
-        header("location: http://localhost/SurgeAds_Media/auth/users/profile.php");
-    }
-
-    if(isset($_POST['submit'])){
-        if($_POST['user_email'] == '' OR $_POST['pass'] == '')
-        {
-          echo "<div class='alert alert-danger text-center text-white' role='alert'>
-              Enter data into inputs
+        echo "<div class='alert alert-danger text-center text-white' role='alert'>
+            Enter data into inputs
             </div>";
+    }
+    else{
+        //write our query
+        $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->execute([':email' => $email]);
+
+        //execute and then fetch
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //do our password verify function and redirect to the index page
+        if($user && password_verify($password, $user['user_password']))
+        {
+            $_SESSION['username'] = $user['email']; 
+            $_SESSION['user_id'] = $user['id'];
+
+            header("location: https://localhost/SurgeAds_Media/auth/users/profile.php");
         }
         else{
-            $email = $_POST['user_email'];
-            $password = $_POST['pass'];
-
-            $login = $conn->query("SELECT * FROM users WHERE email = '$email'");
-
-            $login->execute();
-
-            $row = $login->FETCH(PDO::FETCH_ASSOC);
-
-            if($login->rowCount() > 0)
-            {
-                if(password_verify($password, $row['user_password']))
-                {
-                    $_SESSION['email'] = $row['email'];
-                    $_SESSION['user_id'] = $row['id'];
-
-                    header('location: http://localhost/SurgeAds_Media/auth/users/profile.php');
-                }
-                else{
-                  echo "<div class='alert alert-danger text-center text-white' role='alert'>
-                          The email or password is incorrect
-                        </div>";
-                }
-            } 
-            else{
-              echo "<div class='alert alert-danger text-center' role='alert'>
-                      The email or password is incorrect
+            echo "<div class='alert alert-danger text-center text-white' role='alert'>
+                    The email or password is incorrect
                     </div>";
-            }
         }
-    }
+    } 
+}
 ?>
 
 
@@ -79,7 +54,7 @@ session_start();
 
 <body>
     <div class="wrapper">
-        <form method="POST" action ="users/profile.php">
+        <form method="POST" action="login.php">
             <h1>Login</h1>
             <div class="input-box">
                 <input type="text" name="user_email" placeholder="Username " required>

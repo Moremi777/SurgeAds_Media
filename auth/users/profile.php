@@ -1,14 +1,3 @@
-<?php require "../../config/config.php"; ?>
-
-<?php
-
-    $select = $conn->query("SELECT * FROM users");
-
-    $select->execute();
-
-    $profile = $select->fetch(PDO::FETCH_OBJ);
-
-?>
 
 <!doctype html>
 <html lang="en">

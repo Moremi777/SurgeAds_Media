@@ -7,58 +7,54 @@ session_start();
 
 <?php
 
-  if(isset($_SESSION['user_id']))
-  {
-      header("location: http://localhost/SurgeAds_Media/index.php");
-  }
-
-  if(isset($_POST['submit']))
-  {
-    // Assuming you have a PDO instance $pdo
-    $email = $_POST['user_email']; // The username submitted by the user
-    $password = $_POST['pass']; // The email submitted by the user
-
-    // Prepare a SELECT statement to check if the user exists-
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = :user_email OR user_password = :pass");
-    $stmt->execute([':email' => $email, ':user_password' => $password]);
-
-    // Fetch the user from the database
-    $user = $stmt->fetch();
-
-    if ($user) {
-        // The user exists, display a message and suggest a password reset
-        echo "An account with this username or email already exists. If you forgot your password, please reset it.";
-    } else {
-        // The user doesn't exist, continue with the registration process
-        // ...
+    if(isset($_SESSION['user_id']))
+    {
+        header("location: http://localhost/SurgeAds_Media/index.php");
     }
-    
-    if($_POST['user_email'] == '' OR $_POST['pass'] == ''){
-        echo "<div class='alert alert-danger text-center text-white' role='alert'>
-          Enter data into inputs
-      </div>";
-    }
-    else{
+
+    if(isset($_POST['submit']))
+    {
+        // Assuming you have a PDO instance $conn
         $name = $_POST['f_name'];
-        $surname = $_POST['l_name'];
-        $email = $_POST['user_email'];
-        $password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+        $email = $_POST['user_email']; // The username submitted by the user
 
-        $insert = $conn->prepare("INSERT INTO users (fname, lname, email, user_password) VALUES 
-        (:fname, :lname, :email, :user_password)");
+        // Prepare a SELECT statement to check if the user exists
+        $stmt = $conn->prepare("SELECT * FROM users WHERE fname = :f_name OR email = :user_email");
+        $stmt->execute([':f_name' => $name, ':user_email' => $email]);
 
-        $insert->execute([
-            ':fname' => $name,
-            ':lname' => $surname,
-            ':email' => $email,
-            ':user_password' => $password
-        ]);
+        // Fetch the user from the database
+        $user = $stmt->fetch();
 
-        header("location: login.php");
+        if ($user) {
+            // The user exists, display a message and suggest a password reset
+            echo "An account with this username or email already exists. If you forgot your password, please reset it.";
+        } else {
+            // The user doesn't exist, continue with the registration process
+            if($_POST['user_email'] == '' OR $_POST['pass'] == ''){
+                echo "<div class='alert alert-danger text-center text-white' role='alert'>
+                Enter data into inputs
+            </div>";
+            }
+            else{
+                $name = $_POST['f_name'];
+                $surname = $_POST['l_name'];
+                $email = $_POST['user_email'];
+                $password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
+                $insert = $conn->prepare("INSERT INTO users (fname, lname, email, user_password) VALUES 
+                (:first_name, :last_name, :email, :passw)");
+
+                $insert->execute([
+                    ':first_name' => $name,
+                    ':last_name' => $surname,
+                    ':email' => $email,
+                    ':passw' => $password
+                ]);
+
+                header("location: http://localhost/SurgeAds_Media/users/login.php");
+            }
+        }
     }
-  }
-
 ?>
 
 <!doctype html>
@@ -90,6 +86,7 @@ session_start();
             </div>
             <div class="input-box">
                 <input type="password" name="pass" placeholder="Create password" required>
+                <i class='bx bxs-lock-alt' ></i>
             </div>
             
             <!--Create confirm password HERE-->
