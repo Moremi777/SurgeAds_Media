@@ -117,43 +117,65 @@
 
                     <label><input type="checkbox" id="showPassword"> Show password</label>
 
-                    <button type="submit" name="submit" class="btn btn-danger"> Update Details </button>
+                    <button type="submit" name="submit" class="btn btn-warning"> Update Details </button>
+                    <div class="message">
+                        <label for="submit"> Message is displayed here </label>
+                    </div>
                 </div>
             </form>
         </div>
-
-    <!--Create confirm password HERE-->
-
-            <div class="remember-forgot">
-                
-            </div>
-
-            </form>
-        </div>    
-        
     </div>
-    <br>
-<br>
-        <!--Javascript code to show password when the checkbox is checked or not -->
-        <script>
-            const passwordInput = document.getElementById('password');
-            const showPasswordCheckbox = document.getElementById('showPassword');
 
-            showPasswordCheckbox.addEventListener('change', function () {
-                const isChecked = this.checked;
-                passwordInput.type = isChecked ? 'text' : 'password';
-            });
-        </script>
+    <h1> Address Information </h1>
 
-        <!--Javascript for displaying selected profile picture-->
-        <script>
-            let profilePic = document.getElementById("profile-pic");
-            let inputFile = document.getElementById("input-file");
+    <div class="container">
+        <h5> Delivery Address: </h5>
+        <div class="wrapperInfo">
+            <form action="edit_profile.php">
+                <div class="input-box">
+                    <input type="text" name="line1" placeholder="Address Line 1:" required>
 
-            inputFile.onchange = function(){
-                profilePic.src = URL.createObjectURL(inputFile.files[0]);
-            }
-        </script>
+                    <input type="text" name="line2" placeholder="Address Line 2:" required>
+
+                    <input type="text" name="suburb" placeholder="Suburb:" required>  
+
+                    <input type="text" name="city" placeholder="City:" required>
+
+                    <input type="code" name="postal_code" placeholder="Postal Code:" required>
+
+                    <input type="code" name="country" placeholder="Country:" required>
+
+                    <button type="submit" name="submit-add" class="btn btn-success"> Add Details </button>
+                    <button type="submit" name="submit-update" class="btn btn-warning"> Update Details </button>
+                    <div class="message">
+                        <label for="submit"> Message is displayed here </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <br><br>
+    <!--Javascript code to show password when the checkbox is checked or not -->
+    <script>
+        const passwordInput = document.getElementById('password');
+        const showPasswordCheckbox = document.getElementById('showPassword');
+
+        showPasswordCheckbox.addEventListener('change', function () {
+            const isChecked = this.checked;
+            passwordInput.type = isChecked ? 'text' : 'password';
+        });
+    </script>
+
+    <!--Javascript for displaying selected profile picture-->
+    <script>
+        let profilePic = document.getElementById("profile-pic");
+        let inputFile = document.getElementById("input-file");
+
+        inputFile.onchange = function(){
+            profilePic.src = URL.createObjectURL(inputFile.files[0]);
+        }
+    </script>
 
 
 <?php require "../../includes/footer.php"?>
