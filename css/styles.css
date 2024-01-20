@@ -139,6 +139,14 @@ h6{
     align-items: center;
 }
 
+.mb-3 input{
+    border: 2px solid black;
+}
+
+.mb-3 textarea{
+    border: 2px solid black;
+}
+
 .container-1{
     padding: 50px;
 }

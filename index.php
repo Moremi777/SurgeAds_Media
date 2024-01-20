@@ -207,7 +207,7 @@ session_start();
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Message:"></textarea>
             </div>
             <div class="contact-button">
-                <button type="submit" class="btn btn-primary">Send Message</button>
+                <button type="submit" class="btn btn-dark">Send Message</button>
             </div>
         </div>  
     </div>
