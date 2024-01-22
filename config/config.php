@@ -13,12 +13,8 @@
         //password
         $pass = "";
 
-        $charset = "utf8mb4";
-
         //Connection variable
-        $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
-
-        $conn = new PDO($dsn, $user, $pass);
+        $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
 
         //PDO EXCEPTION
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

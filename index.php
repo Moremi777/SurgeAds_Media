@@ -1,8 +1,4 @@
-<?php
-
-session_start();
-
-?>
+<?php session_start(); ?>
 
 <?php require "config/config.php"; ?>
 
@@ -12,6 +8,7 @@ session_start();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SurgeAds Media</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
@@ -19,10 +16,10 @@ session_start();
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <img src="https://localhost/SurgeAds_Media/index.php" alt="LOGO" class="navbar-brand">
-            <a class="navbar-brand" href="https://localhost/SurgeAds_Media/index.php">SurgeAds Media</a>
+            <img src="" alt="LOGO" class="navbar-brand">
+            <a class="navbar-brand" href="#">SurgeAds Media</a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -31,15 +28,14 @@ session_start();
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="https://localhost/SurgeAds_Media/store/shop.php"> Shop </a>
                     </li>
-
                     <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#"> Foods </a>
+                        <a class="nav-link active dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false" href="#"> Foods </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="https://localhost/SurgeAds_Media/store/shop.php"> Dog </a></li>
+                                <li><a class="dropdown-item" href="#"> Dog </a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="https://localhost/SurgeAds_Media/store/shop.php"> Cat </a></li>
+                                <li><a class="dropdown-item" href="#"> Cat </a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="https://localhost/SurgeAds_Media/store/shop.php"> Parrot </a></li>
+                                <li><a class="dropdown-item" href="#"> Parrot </a></li>
                             </ul>
                     </li>
                     <li class="nav-item">
@@ -49,23 +45,72 @@ session_start();
                         <a class="nav-link active" aria-current="page" href="#">Contact</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
+
+                <form class="d-flex" role="search" method="POST" action="profile.php">
                     <input class="form-control me-1" type="search" placeholder="What are you looking for..." aria-label="Search">
                     <img src="images/icons8-search-32.png" class="nav-icons" type="submit" alt="search">
+                    <img src="images/icons8-user-32.png" alt="user" class="nav-icons" data-toggle="dropdown" aria-expanded="false" onclick="toggleMenu()">
+                    
+                    <?php if(isset($_SESSION['username'])) : ?>
+                    <div class="sub-menu-wrap" id="subMenu">
+                        <div class="sub-menu">
+                            <div class="user-info">
+                                <img src="images/user.png" alt="user" class="nav-icons">
+                                <h5>  <?php echo $_SESSION['name']; ?> <?php echo $_SESSION['surname']; ?> </h5>
+                            </div>
+                            <hr>
+                            <a href="https://localhost/SurgeAds_Media/auth/users/edit_profile.php" class="sub-menu-link">
+                                <img src="images/icons8-user-32.png" alt="edit" class="nav-icons">
+                                <p> Edit Profile </p>
+                                <span></span>
+                            </a>
+                            <a href="#" class="sub-menu-link">
+                                <img src="images/icons8-logistics-32.png" alt="edit" class="nav-icons">
+                                <p> My Orders </p>
+                                <span></span>
+                            </a>
+                            <a href="#" class="sub-menu-link">
+                                <img src="images/setting.png" alt="settings" class="nav-icons">
+                                <p> Settings & Privacy </p>
+                                <span></span>
+                            </a>
+                            <a href="#" class="sub-menu-link">
+                                <img src="images/help.png" alt="help" class="nav-icons">
+                                <p> Help & Support </p>
+                                <span></span>
+                            </a>
+                            <a href="https://localhost/SurgeAds_Media/auth/logout.php" class="sub-menu-link">
+                                <img src="images/logout.png" alt="logout" class="nav-icons">
+                                <p> Logout </p>
+                                <span></span>
+                            </a>
+                        </div>
+                    </div>
+                    <?php else : ?>
+                        <div class="sub-menu-wrap" id="subMenu">
+                            <div class="sub-menu">
+                                <a href="https://localhost/SurgeAds_Media/auth/login.php" class="sub-menu-link">
+                                    <img src="images/icons8-user-32.png" alt="help" class="nav-icons">
+                                    <p> Sign In </p>
+                                    <span></span>
+                                </a>
+                                <a href="https://localhost/SurgeAds_Media/auth/register.php" class="sub-menu-link">
+                                    <img src="images/icons8-user-32.png" alt="logout" class="nav-icons">
+                                    <p> Sign Up </p>
+                                    <span></span>
+                                </a>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <div class="icon-cart">
+                        <a href="https://localhost/SurgeAds_Media/store/cart.php"><img src="images/icons8-cart-32.png" alt="cart" class="nav-icons"></a>
+                        <span>0</span>
+                    </div>
                 </form>
-                <li class="nav-item dropdown">
-                    <img src="images/icons8-user-32.png" alt="user" class="nav-icons" data-bs-toggle="dropdown" aria-expanded="false">
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="https://localhost/SurgeAds_Media/auth/login.php"> Sign In </a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="https://localhost/SurgeAds_Media/auth/register.php"> Sign Up </a></li>
-                        </ul>
-                </li>
-                <a href="https://localhost/SurgeAds_Media/store/cart.php"><img src="images/icons8-cart-32.png" alt="cart" class="nav-icons"></a>
             </div>
         </div>
     </nav>
-
     <img src="images/roberto-nickson-_JGVVEfbTVQ-unsplash.jpg" class="img-fluid" alt="displayImage">
     <div class="transparent-container">
         <div class="content">
