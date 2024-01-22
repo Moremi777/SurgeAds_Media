@@ -1,90 +1,54 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Edit Profile</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../css/styles.css">
-    <link rel="stylesheet" href="css/editProfile.css">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <img src="" alt="LOGO" class="navbar-brand">
-            <a class="navbar-brand" href="#">SurgeAds Media</a>
+<?php
+    require "../../includes/profile_header.php";
+?>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<?php
+        $select = $conn->query("SELECT * FROM users");
 
-            <div class="collapse navbar-collapse px-5" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-lg-0 p-2 ml-5">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../../index.html"> Home </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../../store/shop.html"> Shop </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#"> Foods </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"> Dog </a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#"> Cat </a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#"> Parrot </a></li>
-                            </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Our Story</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Contact</a>
-                    </li>
-                </ul>
+        $select->execute();
 
-                <form class="d-flex" role="search">
-                    <input class="form-control me-1" type="search" placeholder="What are you looking for..." aria-label="Search">
-                    <img src="../../images/icons8-search-32.png" class="nav-icons" type="submit" alt="search">
-                    <img src="../../images/icons8-user-32.png" alt="user" class="nav-icons" onclick="toggleMenu()">
+        $profile = $select->fetch(PDO::FETCH_OBJ);
 
-                    <div class="sub-menu-wrap" id="subMenu">
-                        <div class="sub-menu">
-                            <div class="user-info">
-                                <img src="../../images/user.png" alt="user" class="nav-icons">
-                                <h3> John Doe </h3>
-                            </div>
-                            <hr>
-                            <a href="#" class="sub-menu-link">
-                                <img src="../../images/icons8-user-32.png" alt="edit" class="nav-icons">
-                                <p> Edit Profile </p>
-                                <span></span>
-                            </a>
-                            <a href="#" class="sub-menu-link">
-                                <img src="../../images/setting.png" alt="settings" class="nav-icons">
-                                <p> Settings & Privacy </p>
-                                <span></span>
-                            </a>
-                            <a href="#" class="sub-menu-link">
-                                <img src="../../images/help.png" alt="help" class="nav-icons">
-                                <p> Help & Support </p>
-                                <span></span>
-                            </a>
-                            <a href="#" class="sub-menu-link">
-                                <img src="../../images/logout.png" alt="logout" class="nav-icons">
-                                <p> Logout </p>
-                                <span></span>
-                            </a>
-                        </div>
-                    </div>
+        //second update query 
 
-                    <a href="../../store/cart.html"><img src="../../images/icons8-cart-32.png" alt="cart" class="nav-icons"></a>
-                </form>
-            </div>
-        </div>
-    </nav>
+        if(isset($_POST['submit'])){
+
+            if($_POST['name'] == '' OR $_POST['surname'] == '' OR $_POST['phone_number'] == '' OR $_POST['email'] == '')
+            {
+                echo "<div class='alert alert-danger text-center text-white' role='alert'>
+                    Enter data into inputs
+                </div>";
+            }
+
+            else{
+                $name = $_POST['name'];
+                $surname = $_POST['surname'];
+                $phone = $_POST['phone'];
+                $email = $_POST['email'];
+                $img = $_FILES['img']['name'];
+                $dir = 'auth/users/images/' . basename($img);
+
+                $update = $conn->prepare("UPDATE users SET fname = :fname, lname = :lname, phone_number = :phone, email = :email, profile_pic = :pic WHERE id = '$id'");
+                $update->execute([
+                    ':fname' => $name,
+                    ':lname' => $surname,
+                    ':phone' => $phone,
+                    ':email' => $email,
+                    ':pic' => $img
+                ]);
+
+                header('location: http://localhost/SurgeAds_Media/auth/users/edit_profile.php?prof_id='.$_SESSION['user_id'].'');
+                echo "<div class='alert alert-danger text-center text-white' role='alert'>
+                    Details Updated Successfully !
+                </div>";
+
+            }
+
+        }
+        else{
+            echo "error";
+        }
+?>
 
 
     <h1> Edit Information </h1>
@@ -94,32 +58,32 @@
             <h5> Update Image </h5>
             <img src="../images/default_ProfilePicture.png" id="profile-pic">
             <div class="wrapperProfile-pic">
-                <form action="">
+                <form method="POST" action="edit_profile.php">
                     <div class="test">
-                        <input type="file" accept="image/*" id="input-file"> 
+                        <input type="file" name="img" accept="image/*" id="input-file"> 
                     </div>
                 </form>
             </div>
         </div>
 
         <div class="wrapperInfo">
-            <form action="edit_profile.php">
+            <form method="POST" action="edit_profile.php">
                 <div class="input-box">
-                    <input type="text" name="f_name" placeholder="Name " required>
+                    <input type="text" name="name" value="<?php echo $profile->fname;?>" placeholder="Name " required>
 
-                    <input type="text" name="l_name" placeholder="Surname " required>
+                    <input type="text" name="surname" placeholder="Surname " value="<?php echo $profile->lname;?>" required>
 
-                    <input type="email" name="user_email" placeholder="Email " required>  
+                    <input type="email" name="email" placeholder="Email " value="<?php echo $profile->email;?>" required>  
 
-                    <input type="tel" name="phone_number" placeholder="Phone number " required>
+                    <input type="tel" name="phone_number" placeholder="Phone number " value="<?php echo $profile->phone_number;?>" required>
 
-                    <input type="password" name="pass" placeholder="New password" required>
+                    <input type="password" name="password" placeholder="New password" value="<?php echo $profile->user_password;?>" required>
 
                     <label><input type="checkbox" id="showPassword"> Show password</label>
 
                     <button type="submit" name="submit" class="btn btn-warning"> Update Details </button>
                     <div class="message">
-                        <label for="submit"> Message is displayed here </label>
+                        <label for="submit"> Message is displayed her </label>
                     </div>
                 </div>
             </form>
@@ -131,19 +95,19 @@
     <div class="container">
         <h5> Delivery Address: </h5>
         <div class="wrapperInfo">
-            <form action="edit_profile.php">
+            <form method="POST" action="edit_profile.php">
                 <div class="input-box">
-                    <input type="text" name="line1" placeholder="Address Line 1:" required>
+                    <input type="text" name="line1" value="<?php ;?>" placeholder="Address Line 1:" required>
 
-                    <input type="text" name="line2" placeholder="Address Line 2:" required>
+                    <input type="text" name="line2" value="<?php ;?>" placeholder="Address Line 2:" required>
 
-                    <input type="text" name="suburb" placeholder="Suburb:" required>  
+                    <input type="text" name="suburb" value="<?php ;?>" placeholder="Suburb:" required>  
 
-                    <input type="text" name="city" placeholder="City:" required>
+                    <input type="text" name="city" value="<?php ;?>" placeholder="City:" required>
 
-                    <input type="code" name="postal_code" placeholder="Postal Code:" required>
+                    <input type="code" name="postal_code" value="<?php ;?>"  placeholder="Postal Code:" required>
 
-                    <input type="code" name="country" placeholder="Country:" required>
+                    <input type="code" name="country" value="<?php ;?>" placeholder="Country:" required>
 
                     <button type="submit" name="submit-add" class="btn btn-success"> Add Details </button>
                     <button type="submit" name="submit-update" class="btn btn-warning"> Update Details </button>

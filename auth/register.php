@@ -7,9 +7,9 @@ session_start();
 
 <?php
 
-    if(isset($_SESSION['user_id']))
+    if(isset($_SESSION['username']))
     {
-        header("location: http://localhost/SurgeAds_Media/index.php");
+        header("location: https://localhost/SurgeAds_Media/index.php");
     }
 
     if(isset($_POST['submit']))
@@ -27,7 +27,9 @@ session_start();
 
         if ($user) {
             // The user exists, display a message and suggest a password reset
-            echo "An account with this username or email already exists. If you forgot your password, please reset it.";
+            echo "<div class='alert alert-danger text-center text-white' role='alert'>
+                An account with this username or email already exists. If you forgot your password, please reset it.
+            </div>";
         } else {
             // The user doesn't exist, continue with the registration process
             if($_POST['user_email'] == '' OR $_POST['pass'] == ''){
@@ -39,19 +41,21 @@ session_start();
                 $name = $_POST['f_name'];
                 $surname = $_POST['l_name'];
                 $email = $_POST['user_email'];
+                $phone = $_POST['phone'];
                 $password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
-                $insert = $conn->prepare("INSERT INTO users (fname, lname, email, user_password) VALUES 
-                (:first_name, :last_name, :email, :passw)");
+                $insert = $conn->prepare("INSERT INTO users (fname, lname, phone_number, email, user_password) VALUES 
+                (:first_name, :last_name, :phone, :email, :passw)");
 
                 $insert->execute([
                     ':first_name' => $name,
                     ':last_name' => $surname,
+                    ':phone' => $phone,
                     ':email' => $email,
                     ':passw' => $password
                 ]);
 
-                header("location: http://localhost/SurgeAds_Media/users/login.php");
+                header("location: http://localhost/SurgeAds_Media/auth/login.php");
             }
         }
     }
