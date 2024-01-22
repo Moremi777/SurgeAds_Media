@@ -77,7 +77,7 @@
                                 <p> Logout </p>
                                 <span></span>
                             </a>
-                        </div>
+                        </div> 
                     </div>
 
                     <a href="../../store/cart.html"><img src="../../images/icons8-cart-32.png" alt="cart" class="nav-icons"></a>
