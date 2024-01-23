@@ -55,7 +55,7 @@
                     <div class="sub-menu-wrap" id="subMenu">
                         <div class="sub-menu">
                             <div class="user-info">
-                                <img src="images/user.png" alt="user" class="nav-icons">
+                                <img src="<?php echo $imageSource;?>" alt="user" class="nav-icons">
                                 <h5>  <?php echo $_SESSION['name']; ?> <?php echo $_SESSION['surname']; ?> </h5>
                             </div>
                             <hr>

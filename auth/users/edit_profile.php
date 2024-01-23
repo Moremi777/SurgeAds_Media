@@ -3,81 +3,152 @@
 ?>
 
 <?php
-        $select = $conn->query("SELECT * FROM users");
 
-        $select->execute();
+if (!isset($_SESSION['username'])) {
+    header("location: http://localhost/SurgeAds_Media/auth/login.php");
+    exit();
+}
 
-        $profile = $select->fetch(PDO::FETCH_OBJ);
+$id = $_SESSION['user_id'];
+$select = $conn->prepare("
+    SELECT users.*, user_addresses.*
+    FROM users
+    LEFT JOIN user_addresses ON users.id = user_addresses.user_id
+    WHERE users.id = :id
+");
+$select->bindParam(':id', $id);
+$select->execute();
+$address = $select->fetch(PDO::FETCH_OBJ);
 
-        //second update query 
+if (isset($_GET['upd_id'])) {
+    // first select query
+    $id = $_GET['upd_id'];
 
-        if(isset($_POST['submit'])){
+    $select = $conn->prepare("SELECT * FROM users WHERE id = :id");
+    $select->bindParam(':id', $id);
+    $select->execute();
 
-            if($_POST['name'] == '' OR $_POST['surname'] == '' OR $_POST['phone_number'] == '' OR $_POST['email'] == '')
-            {
-                echo "<div class='alert alert-danger text-center text-white' role='alert'>
+    $profile = $select->fetch(PDO::FETCH_OBJ);
+
+    // second update query
+    if (isset($_POST['submit'])) {
+        if ($_POST['name'] == '' OR $_POST['surname'] == '' OR $_POST['phone_number'] == '') {
+            echo "<div class='alert alert-danger text-center text-white' role='alert'>
                     Enter data into inputs
                 </div>";
-            }
+        } else {
+            
+            unlink("../images/" .$address->profile_pic. "");
 
-            else{
-                $name = $_POST['name'];
-                $surname = $_POST['surname'];
-                $phone = $_POST['phone'];
-                $email = $_POST['email'];
-                $img = $_FILES['img']['name'];
-                $dir = 'auth/users/images/' . basename($img);
+            $name = $_POST['name'];
+            $surname = $_POST['surname'];
+            $email = $_POST['email'];
+            $phone = $_POST['phone_number'];
+            $password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+            $img = $_FILES['img']['name'];
 
-                $update = $conn->prepare("UPDATE users SET fname = :fname, lname = :lname, phone_number = :phone, email = :email, profile_pic = :pic WHERE id = '$id'");
-                $update->execute([
-                    ':fname' => $name,
-                    ':lname' => $surname,
-                    ':phone' => $phone,
-                    ':email' => $email,
-                    ':pic' => $img
-                ]);
+            $dir = '../images/' . basename($img);
 
-                header('location: http://localhost/SurgeAds_Media/auth/users/edit_profile.php?prof_id='.$_SESSION['user_id'].'');
-                echo "<div class='alert alert-danger text-center text-white' role='alert'>
-                    Details Updated Successfully !
+            $update = $conn->prepare("UPDATE users SET fname = :names, lname = :surname, email = :email, phone_number = :phone, user_password = :passw, profile_pic = :img WHERE id = :id");
+            $update->execute([
+                ':names' => $name,
+                ':surname' => $surname,
+                ':email' => $email,
+                ':phone' => $phone,
+                ':passw' => $password,
+                ':img' => $img,
+                ':id' => $id
+            ]);
+
+            if(move_uploaded_file($_FILES['img']['tmp_name'], $dir))
+            {
+                echo "<div class='alert alert-success text-center text-white' role='alert'>
+                Profile Details Updated Successfully!
                 </div>";
-
             }
+            else {
+                echo 'File upload failed'; // Add this line for debugging
+            }
+        }
+    }
+}
 
-        }
-        else{
-            echo "error";
-        }
+
+if (isset($_POST['submit-add']) || isset($_POST['submit-update'])) {
+    // Add or update address details
+    $line1 = $_POST['line1'];
+    $line2 = $_POST['line2'];
+    $suburb = $_POST['suburb'];
+    $city = $_POST['city'];
+    $postal_code = $_POST['postal_code'];
+    $province = $_POST['province'];
+    $country = $_POST['country'];
+
+    if (isset($_POST['submit-add'])) {
+        $insertAddress = $conn->prepare("INSERT INTO user_addresses (user_id, address_line1, address_line2, suburb, city, province, country, postal_code) 
+                                         VALUES (:user_id, :line1, :line2, :suburb, :city, :province, :country, :postal_code)");
+        $insertAddress->execute([
+            ':user_id' => $id,
+            ':line1' => $line1,
+            ':line2' => $line2,
+            ':suburb' => $suburb,
+            ':city' => $city,
+            ':province' => $province,
+            ':country' => $country,
+            ':postal_code' => $postal_code
+        ]);
+        echo "<div class='alert alert-success text-center text-white' role='alert'>
+            Address Details Inserted Successfully!
+        </div>";
+    } elseif (isset($_POST['submit-update'])) {
+        $updateAddress = $conn->prepare("UPDATE user_addresses 
+                                         SET line1 = :line1, line2 = :line2, suburb = :suburb, city = :city, postal_code = :postal_code, country = :country 
+                                         WHERE user_id = :user_id");
+        $updateAddress->execute([
+            ':line1' => $line1,
+            ':line2' => $line2,
+            ':suburb' => $suburb,
+            ':city' => $city,
+            ':postal_code' => $postal_code,
+            ':country' => $country,
+            ':user_id' => $id
+        ]);
+    }
+
+    echo "<div class='alert alert-success text-center text-white' role='alert'>
+            Address Details Updated Successfully!
+         </div>";
+}
 ?>
-
+    <?php
+        $imageSource = "../images/" . $address->profile_pic;
+    ?>
 
     <h1> Edit Information </h1>
 
     <div class="container">
         <div class="profile_picture">
             <h5> Update Image </h5>
-            <img src="../images/default_ProfilePicture.png" id="profile-pic">
+            <img src="<?php echo $imageSource; ?>" alt="Profile Picture" width="900px" height="300px" id="profile-pic">
             <div class="wrapperProfile-pic">
-                <form method="POST" action="edit_profile.php">
+                <form method="POST" action="edit_profile.php?upd_id=<?php echo $id; ?>" enctype="multipart/form-data">
                     <div class="test">
                         <input type="file" name="img" accept="image/*" id="input-file"> 
                     </div>
-                </form>
             </div>
         </div>
 
         <div class="wrapperInfo">
-            <form method="POST" action="edit_profile.php">
                 <div class="input-box">
-                    <input type="text" name="name" value="<?php echo $profile->fname;?>" placeholder="Name " required>
+                    <input type="text" name="name" value="<?php echo $address->fname;?>" placeholder="Name " required>
 
-                    <input type="text" name="surname" placeholder="Surname " value="<?php echo $profile->lname;?>" required>
+                    <input type="text" name="surname" placeholder="Surname " value="<?php echo $address->lname;?>" required>
 
-                    <input type="email" name="email" placeholder="Email " value="<?php echo $profile->email;?>" required>  
+                    <input type="email" name="email" placeholder="Email " value="<?php echo $address->email;?>" required>  
 
-                    <input type="tel" name="phone_number" placeholder="Phone number " value="<?php echo $profile->phone_number;?>" required>
+                    <input type="tel" name="phone_number" placeholder="Phone number " value="<?php echo $address->phone_number;?>" required>
 
-                    <input type="password" name="password" placeholder="New password" value="<?php echo $profile->user_password;?>" required>
+                    <input type="password" name="pass" placeholder="New password" value="<?php echo $address->user_password;?>" required>
 
                     <label><input type="checkbox" id="showPassword"> Show password</label>
 
@@ -97,17 +168,19 @@
         <div class="wrapperInfo">
             <form method="POST" action="edit_profile.php">
                 <div class="input-box">
-                    <input type="text" name="line1" value="<?php ;?>" placeholder="Address Line 1:" required>
+                    <input type="text" name="line1" value="<?php echo $address->address_line1;?>" placeholder="Address Line 1:" required>
 
-                    <input type="text" name="line2" value="<?php ;?>" placeholder="Address Line 2:" required>
+                    <input type="text" name="line2" value="<?php echo $address->address_line2;?>" placeholder="Address Line 2:" required>
 
-                    <input type="text" name="suburb" value="<?php ;?>" placeholder="Suburb:" required>  
+                    <input type="text" name="suburb" value="<?php echo $address->suburb;?>" placeholder="Suburb:" required>  
 
-                    <input type="text" name="city" value="<?php ;?>" placeholder="City:" required>
+                    <input type="text" name="city" value="<?php echo $address->city;?>" placeholder="City:" required>
 
-                    <input type="code" name="postal_code" value="<?php ;?>"  placeholder="Postal Code:" required>
+                    <input type="text" name="province" value="<?php echo $address->province;?>" placeholder="Province:" required>
 
-                    <input type="code" name="country" value="<?php ;?>" placeholder="Country:" required>
+                    <input type="code" name="postal_code" value="<?php echo $address->postal_code;?>"  placeholder="Postal Code:" required>
+
+                    <input type="code" name="country" value="<?php echo $address->country;?>" placeholder="Country:" required>
 
                     <button type="submit" name="submit-add" class="btn btn-success"> Add Details </button>
                     <button type="submit" name="submit-update" class="btn btn-warning"> Update Details </button>

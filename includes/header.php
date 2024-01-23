@@ -2,6 +2,26 @@
 
 <?php require "../config/config.php"; ?>
 
+<?php
+
+$id = $_SESSION['user_id'];
+$select = $conn->prepare("
+    SELECT users.*, user_addresses.*
+    FROM users
+    LEFT JOIN user_addresses ON users.id = user_addresses.user_id
+    WHERE users.id = :id
+");
+$select->bindParam(':id', $id);
+$select->execute();
+$address = $select->fetch(PDO::FETCH_OBJ);
+
+?>
+
+<?php
+$imageSource = "auth/images/" . $address->profile_pic;
+?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -61,7 +81,7 @@
                     <div class="sub-menu-wrap" id="subMenu">
                         <div class="sub-menu">
                             <div class="user-info">
-                                <img src="https://localhost/SurgeAds_Media/images/user.png" alt="user" class="nav-icons">
+                                <img src="../<?php echo $imageSource; ?>"  alt="user" class="nav-icons">
                                 <h5>  <?php echo $_SESSION['name']; ?> <?php echo $_SESSION['surname']; ?> </h5>
                             </div>
                             <hr>

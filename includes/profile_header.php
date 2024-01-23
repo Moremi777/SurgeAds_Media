@@ -3,6 +3,21 @@ session_start();
 ?>
 <?php require "../../config/config.php"?>
 <?php
+
+$id = $_SESSION['user_id'];
+$select = $conn->prepare("
+    SELECT users.*, user_addresses.*
+    FROM users
+    LEFT JOIN user_addresses ON users.id = user_addresses.user_id
+    WHERE users.id = :id
+");
+$select->bindParam(':id', $id);
+$select->execute();
+$address = $select->fetch(PDO::FETCH_OBJ);
+
+?>
+
+<?php
     if (!isset($_SESSION['username'])) {
         header("location: http://localhost/SurgeAds_Media/auth/login.php");
         exit();
@@ -15,6 +30,10 @@ session_start();
 
         $user = $select->fetch(PDO::FETCH_OBJ);
     }
+?>
+
+<?php
+$imageSource = "../images/" . $address->profile_pic;
 ?>
 
 <!doctype html>
@@ -67,13 +86,13 @@ session_start();
                 <form class="d-flex" role="search" method="POST" action="profile.php">
                     <input class="form-control me-1" type="search" placeholder="What are you looking for..." aria-label="Search">
                     <img src="https://localhost/SurgeAds_Media/images/icons8-search-32.png" class="nav-icons" type="submit" alt="search">
-                    <img src="http://localhost/SurgeAds_Media/images/icons8-user-32.png" alt="user" class="nav-icons" onclick="toggleMenu()">
+                    <img src="https://localhost/SurgeAds_Media/images/icons8-user-32.png" alt="user" class="nav-icons" onclick="toggleMenu()">
 
                     <?php if(isset($_SESSION['username'])) : ?>
                     <div class="sub-menu-wrap" id="subMenu">
                         <div class="sub-menu">
                             <div class="user-info">
-                                <img src="http://localhost/SurgeAds_Media/images/user.png" alt="user" class="nav-icons">
+                                <img src="<?php echo $imageSource;?>" alt="user" class="nav-icons">
                                 <h5> <?php echo $_SESSION['name']; ?> <?php echo $_SESSION['surname']; ?> </h5>
                             </div>
                             <hr>
