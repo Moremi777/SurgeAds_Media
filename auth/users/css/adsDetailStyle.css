@@ -1,0 +1,21 @@
+.image-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+#descriptionBox {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.dropdown-box {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#priceBox {
+    width: 100%;
+    margin-top: 10px;
+}
