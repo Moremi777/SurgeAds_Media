@@ -20,45 +20,9 @@ $select->bindParam(':id', $id);
 $select->execute();
 $address = $select->fetch(PDO::FETCH_OBJ);
 
-<<<<<<< HEAD
-if (isset($_GET['upd_id'])) {
+    if (isset($_GET['upd_id'])) {
     // first select query
     $id = $_GET['upd_id'];
-=======
-<<<<<<< HEAD
-                    <div class="sub-menu-wrap" id="subMenu">
-                        <div class="sub-menu">
-                            <div class="user-info">
-                                <img src="../../images/user.png" alt="user" class="nav-icons">
-                                <h3> John Doe </h3>
-                            </div>
-                            <hr>
-                            <a href="#" class="sub-menu-link">
-                                <img src="../../images/icons8-user-32.png" alt="edit" class="nav-icons">
-                                <p> Edit Profile </p>
-                                <span></span>
-                            </a>
-                            <a href="#" class="sub-menu-link">
-                                <img src="../../images/setting.png" alt="settings" class="nav-icons">
-                                <p> Settings & Privacy </p>
-                                <span></span>
-                            </a>
-                            <a href="#" class="sub-menu-link">
-                                <img src="../../images/help.png" alt="help" class="nav-icons">
-                                <p> Help & Support </p>
-                                <span></span>
-                            </a>
-                            <a href="#" class="sub-menu-link">
-                                <img src="../../images/logout.png" alt="logout" class="nav-icons">
-                                <p> Logout </p>
-                                <span></span>
-                            </a>
-                        </div> 
-                    </div>
-=======
-        //second update query 
->>>>>>> 35c6b59831e1fc95243e9e6463f27c76df27d081
->>>>>>> 81302a19330799cab1be28e4780d7f534158f724
 
     $select = $conn->prepare("SELECT * FROM users WHERE id = :id");
     $select->bindParam(':id', $id);
@@ -66,10 +30,13 @@ if (isset($_GET['upd_id'])) {
 
     $profile = $select->fetch(PDO::FETCH_OBJ);
 
-    // second update query
-    if (isset($_POST['submit'])) {
-        if ($_POST['name'] == '' OR $_POST['surname'] == '' OR $_POST['phone_number'] == '') {
-            echo "<div class='alert alert-danger text-center text-white' role='alert'>
+        //second update query 
+
+        if(isset($_POST['submit'])){
+
+            if($_POST['name'] == '' OR $_POST['surname'] == '' OR $_POST['phone_number'] == '' OR $_POST['email'] == '')
+            {
+                echo "<div class='alert alert-danger text-center text-white' role='alert'>
                     Enter data into inputs
                 </div>";
         } else {
@@ -165,7 +132,7 @@ if (isset($_POST['submit-add']) || isset($_POST['submit-update'])) {
     <div class="container">
         <div class="profile_picture">
             <h5> Update Image </h5>
-            <img src="<?php echo $imageSource; ?>" alt="Profile Picture" width="900px" height="300px" id="profile-pic">
+            <img src="<?php echo $imageSource; ?>" alt="Profile Picture" id="profile-pic">
             <div class="wrapperProfile-pic">
                 <form method="POST" action="edit_profile.php?upd_id=<?php echo $id; ?>" enctype="multipart/form-data">
                     <div class="test">
@@ -233,7 +200,7 @@ if (isset($_POST['submit-add']) || isset($_POST['submit-update'])) {
     <script>
         const passwordInput = document.getElementById('password');
         const showPasswordCheckbox = document.getElementById('showPassword');
-       
+
         showPasswordCheckbox.addEventListener('change', function () {
             const isChecked = this.checked;
             passwordInput.type = isChecked ? 'text' : 'password';

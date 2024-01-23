@@ -4,21 +4,23 @@
 
 <?php
 
-$id = $_SESSION['user_id'];
-$select = $conn->prepare("
-    SELECT users.*, user_addresses.*
-    FROM users
-    LEFT JOIN user_addresses ON users.id = user_addresses.user_id
-    WHERE users.id = :id
-");
-$select->bindParam(':id', $id);
-$select->execute();
-$address = $select->fetch(PDO::FETCH_OBJ);
+    if(isset($_SESSION['username']))
+    {
+        $id = $_SESSION['user_id'];
+        $select = $conn->prepare("
+            SELECT users.*, user_addresses.*
+            FROM users
+            LEFT JOIN user_addresses ON users.id = user_addresses.user_id
+            WHERE users.id = :id
+        ");
+        $select->bindParam(':id', $id);
+        $select->execute();
+        $address = $select->fetch(PDO::FETCH_OBJ);
 
-?>
+        $imageSource = "auth/images/" . $address->profile_pic;
 
-<?php
-$imageSource = "auth/images/" . $address->profile_pic;
+    }
+
 ?>
 
 
@@ -42,7 +44,7 @@ $imageSource = "auth/images/" . $address->profile_pic;
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <img src="#" alt="LOGO" class="navbar-brand">
+            <img src="https://localhost/SurgeAds_Media/index.php" alt="LOGO" class="navbar-brand">
             <a class="navbar-brand" href="https://localhost/SurgeAds_Media/index.php">SurgeAds Media</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,10 +67,10 @@ $imageSource = "auth/images/" . $address->profile_pic;
                             </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Our Story</a>
+                        <a class="nav-link active" aria-current="page" href="https://localhost/SurgeAds_Media/index.php#story">Our Story</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Contact</a>
+                        <a class="nav-link active" aria-current="page" href="https://localhost/SurgeAds_Media/index.php#contact">Contact</a>
                     </li>
                 </ul>
 
@@ -116,12 +118,12 @@ $imageSource = "auth/images/" . $address->profile_pic;
                         <div class="sub-menu-wrap" id="subMenu">
                             <div class="sub-menu">
                                 <a href="https://localhost/SurgeAds_Media/auth/login.php" class="sub-menu-link">
-                                    <img src="images/icons8-user-32.png" alt="help" class="nav-icons">
+                                    <img src="https://localhost/SurgeAds_Media/images/icons8-user-32.png" alt="help" class="nav-icons">
                                     <p> Sign In </p>
                                     <span></span>
                                 </a>
                                 <a href="https://localhost/SurgeAds_Media/auth/register.php" class="sub-menu-link">
-                                    <img src="images/icons8-user-32.png" alt="logout" class="nav-icons">
+                                    <img src="https://localhost/SurgeAds_Media/images/icons8-user-32.png" alt="logout" class="nav-icons">
                                     <p> Sign Up </p>
                                     <span></span>
                                 </a>

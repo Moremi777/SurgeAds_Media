@@ -41,7 +41,7 @@ session_start();
                 $name = $_POST['f_name'];
                 $surname = $_POST['l_name'];
                 $email = $_POST['user_email'];
-                $phone = $_POST['phone'];
+                $phone = $_POST['phone_number'];
                 $password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
                 $insert = $conn->prepare("INSERT INTO users (fname, lname, phone_number, email, user_password) VALUES 

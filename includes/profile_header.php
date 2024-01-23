@@ -50,7 +50,7 @@ $imageSource = "../images/" . $address->profile_pic;
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <img src="" alt="LOGO" class="navbar-brand">
+            <img src="https://localhost/SurgeAds_Media/index.php" alt="LOGO" class="navbar-brand">
             <a class="navbar-brand" href="http://localhost/SurgeAds_Media/index.php">SurgeAds Media</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,10 +76,10 @@ $imageSource = "../images/" . $address->profile_pic;
                             </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Our Story</a>
+                        <a class="nav-link active" aria-current="page" href="https://localhost/SurgeAds_Media/index.php#story">Our Story</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Contact</a>
+                        <a class="nav-link active" aria-current="page" href="https://localhost/SurgeAds_Media/index.php#contact">Contact</a>
                     </li>
                 </ul>
 
