@@ -2,6 +2,26 @@
 
 <?php require "config/config.php"; ?>
 
+<?php
+if(isset($_SESSION['username']))
+    {
+        $id = $_SESSION['user_id'];
+        $select = $conn->prepare("
+            SELECT users.*, user_addresses.*
+            FROM users
+            LEFT JOIN user_addresses ON users.id = user_addresses.user_id
+            WHERE users.id = :id
+        ");
+        $select->bindParam(':id', $id);
+        $select->execute();
+        $address = $select->fetch(PDO::FETCH_OBJ);
+
+        $imageSource = "auth/images/" . $address->profile_pic;
+
+    }
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -39,10 +59,10 @@
                             </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Our Story</a>
+                        <a class="nav-link active" aria-current="page" href="#story">Our Story</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Contact</a>
+                        <a class="nav-link active" aria-current="page" href="#contact">Contact</a>
                     </li>
                 </ul>
 
@@ -55,13 +75,13 @@
                     <div class="sub-menu-wrap" id="subMenu">
                         <div class="sub-menu">
                             <div class="user-info">
-                                <img src="images/user.png" alt="user" class="nav-icons">
+                                <img src="<?php echo $imageSource;?>" alt="user" class="nav-icons">
                                 <h5>  <?php echo $_SESSION['name']; ?> <?php echo $_SESSION['surname']; ?> </h5>
                             </div>
                             <hr>
                             <a href="https://localhost/SurgeAds_Media/auth/users/edit_profile.php" class="sub-menu-link">
                                 <img src="images/icons8-user-32.png" alt="edit" class="nav-icons">
-                                <p> Edit Profile </p>
+                                <p> Edit Profile </p> 
                                 <span></span>
                             </a>
                             <a href="#" class="sub-menu-link">
@@ -125,7 +145,7 @@
 
     <div class="transparent-container-2">
         <div class="content-2">
-            <h2> Our Story </h2>
+            <h2 id="story"> Our Story </h2>
             <p> 
                 We are a team of passionate pet lovers who believe that our furry friends deserve the best.
                 That's why we started PetGoods, a online store that offers high-quality products for 
@@ -233,7 +253,7 @@
         <img src="images/matt-nelson-aI3EBLvcyu4-unsplash.jpg" class="img-fluid" alt="displayImage">
         
         <div class="contact-container">
-            <h1> CONTACT US </h1>
+            <h1 id="contact"> CONTACT US </h1>
             
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Name:</label>

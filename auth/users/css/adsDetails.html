@@ -79,8 +79,6 @@
         }
     </script>
 
-    
-
     <script src="script.js"></script>
     <script>
         // Assume the user added an image on this page
@@ -90,42 +88,14 @@
         localStorage.setItem('userAddedImage', userAddedImage);
 
         // Redirect back to the initial page
-        window.location.href = 'index.html';
+        //window.location.href = 'index.html';
     </script>    
 
-</body>
+    <script>
+        let subMenu = document.getElementById("subMenu");
 
-
-
-
-
-
-<br>
-<hr>
-<footer>
-    <br>
-    <div class="footer-links">
-        <a href=""> © 2024, SurgeAds Media </a>
-        <a href=""> Refund Policy </a>
-        <a href=""> Privacy Policy </a>
-        <a href=""> Terms of Service </a>
-    </div>
-
-    <div class="social-media" style="text-align: center; padding: 20px; margin-left: 10px;">
-        <h6> Follow us on social media </h6>
-        <a href="#"><img src="../images/icons8-facebook-32.png" class="media" alt="Facebook"></a>
-        <a href="#"><img src="../images/icons8-instagram-32.png" class="media" alt="Instagram"></a>
-        <a href="#"><img src="../images/icons8-twitter-32.png" class="media" alt="X"></a>
-        <a href="#"><img src="../images/icons8-tiktok-32.png" class="media" alt="TikTok"></a>
-    </div>
-    <br>
-</footer>
-
-<script>
-    let subMenu = document.getElementById("subMenu");
-
-    function toggleMenu(){
-        subMenu.classList.toggle("open-menu");
+        function toggleMenu(){
+            subMenu.classList.toggle("open-menu");
     }
 
 </script>
