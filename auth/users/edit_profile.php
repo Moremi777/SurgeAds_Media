@@ -9,7 +9,7 @@
 
         $profile = $select->fetch(PDO::FETCH_OBJ);
 
-<<<<<<< HEAD
+
                     <div class="sub-menu-wrap" id="subMenu">
                         <div class="sub-menu">
                             <div class="user-info">
@@ -39,9 +39,9 @@
                             </a>
                         </div> 
                     </div>
-=======
+
         //second update query 
->>>>>>> 35c6b59831e1fc95243e9e6463f27c76df27d081
+
 
         if(isset($_POST['submit'])){
 

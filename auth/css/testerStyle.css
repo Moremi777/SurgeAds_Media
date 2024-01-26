@@ -1,0 +1,67 @@
+.image-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+#descriptionBox {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.dropdown-box {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#priceBox {
+    width: 100%;
+    margin-top: 10px;
+}
+
+body{
+    margin: auto;
+    align-items: center;
+}
+
+h1{
+    font-size: 36px;
+    text-align: center;
+    color: black;
+}
+
+.wrapper { 
+    /*width: 420px;*/
+    /*background: transparent;*/
+    border: 2px solid rgba(255, 255, 255, .2);
+    /*backdrop-filter: blur(20px);*/
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, .2);*/
+    color: white;
+    border-radius: 10px;
+    padding: 30px 40px;
+    border: 3px solid black; /* 2px width, solid style, and #3498db color */
+    padding: 10px; /* Optional: Add padding to the element */
+}
+
+.wrapper label{
+    color: black;
+    padding-bottom: 0%;
+}
+
+#image-preview {
+    max-width: 100%;
+    max-height: 300px;
+    margin-top: 20px;
+}
+
+#image-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 150px;
+    margin: 0 10px 10px 0;
+}
